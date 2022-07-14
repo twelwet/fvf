@@ -1,0 +1,31 @@
+{
+  "name": "fvf",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run eslint",
+    "eslint": "eslint --ext .js src/",
+    "server": "nodemon ./src/server",
+    "copy-leaflet-styles": "cp node_modules/leaflet/dist/leaflet.css public/css/leaflet.css",
+    "build-webmap-fvf": "browserify src/webmaps/fvf -o public/js/webmap-fvf.js",
+    "build-webmap-main": "browserify src/webmaps/main -o public/js/webmap-main.js",
+    "build": "npm run copy-leaflet-styles & npm run build-webmap-fvf"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "8.6.0",
+    "eslint-config-htmlacademy": "5.0.0",
+    "nodemon": "2.0.19"
+  },
+  "dependencies": {
+    "csvtojson": "2.0.10",
+    "dotenv": "16.0.1",
+    "express": "4.18.1",
+    "json2csv": "5.0.7",
+    "leaflet": "1.8.0",
+    "pug": "3.0.2"
+  }
+}
