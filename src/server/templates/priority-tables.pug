@@ -1,0 +1,14 @@
+each name, index in priorityNames
+  div.mr-5.ml-5.p-5
+    h5
+      b= `Предлагаемые размещения (Приоритет ${index + 1})`
+    table(class=`table table-light`)
+      tr
+        th #
+        th Наименование
+        th Адрес
+      each item, index in placesByPriority[name]
+        tr
+          td= index + 1
+          td= item[`name`]
+          td= item[`address`]
