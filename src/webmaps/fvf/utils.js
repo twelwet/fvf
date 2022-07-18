@@ -19,9 +19,11 @@ const getStrelkas = (data) => {
   };
 };
 
-const getFvfPlaces = (data) => data.filter((item) => item[`name`].startsWith(`Предлагаемое`));
+const getFvfPlaces = (data) => data.filter((item) => item[`id`].startsWith(`FVF-PLC`));
 
 const getFvfCheckedPlaces = (data) => data.filter((item) => item[`is_checked`]);
+
+const getFvfPriorityPlaces = (data, level) => data.filter((item) => item[`priority_level`] === level);
 
 const getFvfPins = (fvfData, iconPath) => {
   const pinIcon = getPinIcon(iconPath);
@@ -45,5 +47,6 @@ module.exports = {
   getStrelkas,
   getFvfPlaces,
   getFvfCheckedPlaces,
+  getFvfPriorityPlaces,
   getFvfPins,
 };

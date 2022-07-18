@@ -23,6 +23,10 @@ const Icon = {
     STRELKA_DAMAGED: `images/strelka-damaged.svg`,
     FVF_PLACES: `images/fvf-places.svg`,
     FVF_CHECKED_PLACES: `images/star-blue.svg`,
+    FVF_PRIORITY_ONE: `images/priority_1.svg`,
+    FVF_PRIORITY_TWO: `images/priority_2.svg`,
+    FVF_PRIORITY_THREE: `images/priority_3.svg`,
+    FVF_PRIORITY_FOUR: `images/priority_4.svg`,
   },
 };
 

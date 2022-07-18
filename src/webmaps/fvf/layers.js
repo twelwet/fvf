@@ -12,7 +12,7 @@ const {
   getRadars,
   getStrelkas,
   getFvfPlaces,
-  getFvfCheckedPlaces,
+  getFvfPriorityPlaces,
   getFvfPins,
 } = require(`./utils`);
 
@@ -23,7 +23,10 @@ const perekrestoks = getPerekrestoks(fvfData);
 const radars = getRadars(fvfData);
 const {strelkasWorked, strelkasDamaged} = getStrelkas(fvfData);
 const places = getFvfPlaces(fvfData);
-const checkedPlaces = getFvfCheckedPlaces(fvfData);
+const priorityOnePlaces = getFvfPriorityPlaces(places, `1`);
+const priorityTwoPlaces = getFvfPriorityPlaces(places, `2`);
+const priorityThreePlaces = getFvfPriorityPlaces(places, `3`);
+const priorityFourPlaces = getFvfPriorityPlaces(places, `4`);
 
 const vokordsPins = getFvfPins(vokords, Icon.Path.VOKORD);
 const vokordsLayer = L.layerGroup(vokordsPins);
@@ -45,11 +48,36 @@ const strelkasDamagedPins = getFvfPins(strelkasDamaged, Icon.Path.STRELKA_DAMAGE
 const strelkasPins = [...strelkasWorkedPins, ...strelkasDamagedPins];
 const strelkasLayer = L.layerGroup(strelkasPins);
 
-const placesPins = getFvfPins(places, Icon.Path.FVF_PLACES);
-const placesLayer = L.layerGroup(placesPins);
+const priorityOnePlacesPins = getFvfPins(priorityOnePlaces, Icon.Path.FVF_PRIORITY_ONE);
+const priorityOnePlacesLayer = L.layerGroup(priorityOnePlacesPins);
 
-const checkedPlacesPins = getFvfPins(checkedPlaces, Icon.Path.FVF_CHECKED_PLACES);
-const checkedPlacesLayer = L.layerGroup(checkedPlacesPins);
+const priorityTwoPlacesPins = getFvfPins(priorityTwoPlaces, Icon.Path.FVF_PRIORITY_TWO);
+const priorityTwoPlacesLayer = L.layerGroup(priorityTwoPlacesPins);
+
+const priorityThreePlacesPins = getFvfPins(priorityThreePlaces, Icon.Path.FVF_PRIORITY_THREE);
+const priorityThreePlacesLayer = L.layerGroup(priorityThreePlacesPins);
+
+const priorityFourPlacesPins = getFvfPins(priorityFourPlaces, Icon.Path.FVF_PRIORITY_FOUR);
+const priorityFourPlacesLayer = L.layerGroup(priorityFourPlacesPins);
+
+const priorityPlaces = {
+  one: {
+    quantity: priorityOnePlacesPins.length,
+    layer: priorityOnePlacesLayer,
+  },
+  two: {
+    quantity: priorityTwoPlacesPins.length,
+    layer: priorityTwoPlacesLayer,
+  },
+  three: {
+    quantity: priorityThreePlacesPins.length,
+    layer: priorityThreePlacesLayer,
+  },
+  four: {
+    quantity: priorityFourPlacesPins.length,
+    layer: priorityFourPlacesLayer,
+  },
+};
 
 module.exports = {
   vokords: {
@@ -76,12 +104,5 @@ module.exports = {
     layer: strelkasLayer,
     quantity: strelkasPins.length,
   },
-  places: {
-    layer: placesLayer,
-    quantity: placesPins.length,
-  },
-  checkedPlaces: {
-    layer: checkedPlacesLayer,
-    quantity: checkedPlacesPins.length,
-  },
+  priorityPlaces,
 };
