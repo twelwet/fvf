@@ -1,7 +1,7 @@
 each name, index in priorityNames
-  div.mr-5.ml-5.p-5
+  div
     h5
-      b= `Предлагаемые размещения (Приоритет ${index + 1})`
+      b= `Предлагаемые размещения (Приоритет ${index + 1}), ${placesByPriority[name].length} шт`
     table(class=`table table-light`)
       tr
         th #

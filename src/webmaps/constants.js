@@ -2,7 +2,7 @@
 
 const MapSetting = {
   CENTER: [54.357, 44.744],
-  ZOOM: 9,
+  ZOOM: 8,
   ID: `mapbox/streets-v11`,
   TILE_SIZE: 512,
   ACCESS_TOKEN: `your.mapbox.access.token`,
