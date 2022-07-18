@@ -12,6 +12,7 @@ app.set(`json spaces`, 2);
 app.use(express.json());
 
 const PUBLIC_DIR = `../../public`;
+const DOWNLOAD_DIR = `public/download`;
 
 app.use(express.static(path.resolve(__dirname, PUBLIC_DIR)));
 app.use(express.urlencoded({extended: false}));
@@ -22,6 +23,14 @@ app.set(`view engine`, `pug`);
 app.get(`/`, (req, res) => {
   const pageContent = {placesByPriority, priorityNames};
   res.render(`main`, pageContent);
+});
+
+app.get(`/data`, (req, res) => {
+  res.download(`${DOWNLOAD_DIR}/data.xlsx`, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
 });
 
 app.listen(
