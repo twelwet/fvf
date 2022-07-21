@@ -33,6 +33,15 @@ app.get(`/download/places`, (req, res) => {
   });
 });
 
+app.get(`/download/quest`, (req, res) => {
+  res.download(`${DOWNLOAD_DIR}/fvf-opros-list.xlsx`, (err) => {
+    if (err) {
+      console.log(err);
+    }
+  });
+});
+
+
 app.listen(
     PORT,
     () => console.log(`Server starts on port: ${PORT}`)
