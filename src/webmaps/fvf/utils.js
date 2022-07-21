@@ -25,6 +25,16 @@ const getFvfCheckedPlaces = (data) => data.filter((item) => item[`is_checked`]);
 
 const getFvfPriorityPlaces = (data, level) => data.filter((item) => item[`priority_level`] === level);
 
+const getLinesLayer = (lines, color) => L.geoJSON(lines, {
+  style: () => ({
+    color,
+    [`weight`]: 10,
+  }),
+  onEachFeature: (feature, layer) => {
+    layer.bindPopup(`<b>${feature[`data`][`description`]}</b><br>${feature[`data`][`name`]}<br>Тип дороги: "${feature[`data`][`road_type`]}"<br>${feature[`data`][`address`]}<br>${feature[`data`][`contractor`]}`);
+  },
+});
+
 const getFvfPins = (fvfData, iconPath) => {
   const pinIcon = getPinIcon(iconPath);
 
@@ -33,6 +43,19 @@ const getFvfPins = (fvfData, iconPath) => {
     fvfPins
       .push(L.marker([location[`latitude`], location[`longitude`]], {icon: pinIcon})
         .bindPopup(`<b>${location[`model`]}</b><br>${location[`name`]}<br>${location[`description`]}<br>Тип дороги: "${location[`road_type`]}"<br>${location[`address`]}<br>${location[`contractor`]}`));
+  }
+
+  return fvfPins;
+};
+
+const getPlacesFvfPins = (fvfData, iconPath) => {
+  const pinIcon = getPinIcon(iconPath);
+
+  const fvfPins = [];
+  for (const feature of fvfData) {
+    fvfPins
+      .push(L.marker([feature[`latitude`], feature[`longitude`]], {icon: pinIcon})
+        .bindPopup(`<b>${feature[`description`]}</b><br>${feature[`name`]}<br>Тип дороги: "${feature[`road_type`]}"<br>${feature[`address`]}<br>${feature[`contractor`]}`));
   }
 
   return fvfPins;
@@ -48,5 +71,7 @@ module.exports = {
   getFvfPlaces,
   getFvfCheckedPlaces,
   getFvfPriorityPlaces,
+  getLinesLayer,
   getFvfPins,
+  getPlacesFvfPins,
 };

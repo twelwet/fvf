@@ -25,8 +25,8 @@ app.get(`/`, (req, res) => {
   res.render(`main`, pageContent);
 });
 
-app.get(`/data`, (req, res) => {
-  res.download(`${DOWNLOAD_DIR}/data.xlsx`, (err) => {
+app.get(`/download/places`, (req, res) => {
+  res.download(`${DOWNLOAD_DIR}/places-fvf.xlsx`, (err) => {
     if (err) {
       console.log(err);
     }
