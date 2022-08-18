@@ -4,7 +4,7 @@ require(`dotenv`).config();
 const express = require(`express`);
 const path = require(`path`);
 const PORT = process.env.SERVER_PORT;
-const {placesByPriority, priorityNames} = require(`./prepared-data`);
+const {cordons, placesByPriority, priorityNames} = require(`./prepared-data`);
 
 const app = express();
 
@@ -21,7 +21,8 @@ app.set(`views`, `./src/server/templates`);
 app.set(`view engine`, `pug`);
 
 app.get(`/`, (req, res) => {
-  const pageContent = {placesByPriority, priorityNames};
+  const data = {cordons, placesByPriority, priorityNames};
+  const pageContent = {data};
   res.render(`main`, pageContent);
 });
 
