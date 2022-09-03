@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='css/style.css')
+    link(rel='stylesheet', href='css/leaflet.css')
+    link(rel='stylesheet', href='css/bootstrap.css')
+    title= `Карта ФВФ`
+  body
+    .p-3.mt-3.d-flex.flex-column.align-items-stretch
+      div#map.p-2
+      div.info-container
+        include table
+    script(src=`js/webmap-fvf.js`)

@@ -4,7 +4,7 @@ require(`dotenv`).config();
 const express = require(`express`);
 const path = require(`path`);
 const PORT = process.env.SERVER_PORT;
-const {cordons, placesByPriority, priorityNames} = require(`./prepared-data`);
+const {cordons, onlinePoints, pautinaPoints} = require(`./prepared-data`);
 
 const app = express();
 
@@ -21,21 +21,13 @@ app.set(`views`, `./src/server/templates`);
 app.set(`view engine`, `pug`);
 
 app.get(`/`, (req, res) => {
-  const data = {cordons, placesByPriority, priorityNames};
+  const data = {cordons, onlinePoints, pautinaPoints};
   const pageContent = {data};
-  res.render(`main`, pageContent);
+  res.render(`fvf`, pageContent);
 });
 
 app.get(`/download/places`, (req, res) => {
   res.download(`${DOWNLOAD_DIR}/places-fvf.xlsx`, (err) => {
-    if (err) {
-      console.log(err);
-    }
-  });
-});
-
-app.get(`/download/quest`, (req, res) => {
-  res.download(`${DOWNLOAD_DIR}/fvf-opros-list.xlsx`, (err) => {
     if (err) {
       console.log(err);
     }

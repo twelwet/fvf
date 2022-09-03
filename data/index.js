@@ -7,6 +7,7 @@ const backboneNetRaw = require(`./json/fiber-lines-backbone.json`);
 const cityNet = require(`./json/fiber-lines-city-net.json`);
 const jkhNet = require(`./json/fiber-lines-jkh-net.json`);
 const fvfData = require(`./json/fvf.json`);
+const fvfPlaces = require(`./json/fvf-places.json`);
 const fvfLinesPriorityOneRaw = require(`./json/fvf-lines-priority-1.json`);
 const fvfLinesPriorityTwoRaw = require(`./json/fvf-lines-priority-2.json`);
 const fvfLinesPriorityThreeRaw = require(`./json/fvf-lines-priority-3.json`);
@@ -20,10 +21,12 @@ const backboneNet = {
   features: backboneNetLineStrings,
 };
 
-const fvfLinesPriorityOne = saveDataToPriorityLines(fvfData, fvfLinesPriorityOneRaw[`features`]);
-const fvfLinesPriorityTwo = saveDataToPriorityLines(fvfData, fvfLinesPriorityTwoRaw[`features`]);
-const fvfLinesPriorityThree = saveDataToPriorityLines(fvfData, fvfLinesPriorityThreeRaw[`features`]);
-const fvfLinesPriorityFour = saveDataToPriorityLines(fvfData, fvfLinesPriorityFourRaw[`features`]);
+const fvfLines = {
+  priorityOne: saveDataToPriorityLines(fvfPlaces, fvfLinesPriorityOneRaw[`features`]),
+  priorityTwo: saveDataToPriorityLines(fvfPlaces, fvfLinesPriorityTwoRaw[`features`]),
+  priorityThree: saveDataToPriorityLines(fvfPlaces, fvfLinesPriorityThreeRaw[`features`]),
+  priorityFour: saveDataToPriorityLines(fvfPlaces, fvfLinesPriorityFourRaw[`features`]),
+};
 
 module.exports = {
   nodes,
@@ -31,8 +34,5 @@ module.exports = {
   cityNet,
   jkhNet,
   fvfData,
-  fvfLinesPriorityOne,
-  fvfLinesPriorityTwo,
-  fvfLinesPriorityThree,
-  fvfLinesPriorityFour,
+  fvfLines,
 };

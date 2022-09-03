@@ -1,7 +1,6 @@
 'use strict';
 
 const L = require(`leaflet`);
-const {MapSetting} = require(`../constants`);
 const {mapIconsConfig} = require(`../map-utils`);
 
 const {
@@ -61,8 +60,8 @@ const checkedLayers = [
 ];
 
 const map = L.map(`map`, {
-  center: MapSetting.CENTER,
-  zoom: MapSetting.ZOOM,
+  center: [54.357, 44.744],
+  zoom: 8,
   layers: checkedLayers,
 });
 
